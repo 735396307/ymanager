@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="person.yxl.ymanager.dao.BaseDao">
+    <sql id="create">
+        id,customer_id,create_time,update_time,version,
+    </sql>
+
+    <sql id="basePoCreateValue">
+        #{id,jdbcType=BIGINT},#{customerId,jdbcType=BIGINT},#{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP},
+        #{version,jdbcType=INTEGER},
+    </sql>
+
+    <sql id="basePoUpdate">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},version = version + 1,
+    </sql>
+
+    <resultMap id="basePoResultMap" type="person.yxl.ymanager.dao.BaseDao">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="version" jdbcType="INTEGER" property="version" />
+        <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    </resultMap>
+
+    <!-- delete Po -->
+    <sql id="deletePo">
+        delete from
+        <include refid="tableSection"/>
+        where id = #{id,jdbcType=BIGINT}
+        <if test = "domainId != null">
+            and customer_id = #{customerId}
+        </if>
+    </sql>
+
+    <sql id="getPoById">
+        select o.* from
+        <include refid="tableSection" /> o
+        where o.id = #{id,jdbcType=BIGINT}
+        <include refid="person.yxl.ymanager.dao.BaseDao.searchPoWhereCommonSection"/>
+    </sql>
+
+    <sql id="getPoByIdList">
+        select o.* from
+        <include refid="tableSection" /> o
+        where 1=1
+        <choose>
+            <when test="@org.apache.commons.collections.CollectionUtils@isNotEmpty(idList)">
+                and o.id in
+                <foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                and o.id in (-100)
+            </otherwise>
+        </choose>
+
+        <include refid="person.yxl.ymanager.dao.BaseDao.searchPoWhereCommonSection"/>
+
+    </sql>
+
+    <sql id="searchPoWhereCommonSection">
+        <if test = "domainId != null">
+            and o.domainId = #{domainId}
+        </if>
+    </sql>
+
+</mapper>

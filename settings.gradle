@@ -1,0 +1,6 @@
+rootProject.name = 'ymanager'
+include 'dao'
+include 'war'
+include 'model'
+include 'web'
+

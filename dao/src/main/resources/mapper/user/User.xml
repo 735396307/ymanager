@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="person.yxl.ymanager.dao.user.UserDao">
+    <sql id="tableSection">ymanager_user</sql>
+
+    <insert id="create">
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into <include refid="tableSection"/> (
+        <include refid="person.yxl.ymanager.dao.BaseDao.create"/>
+        user_name, pass_word
+        )
+        values (
+        <include refid="person.yxl.ymanager.dao.BaseDao.basePoCreateValue"/>
+        #{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}
+        )
+    </insert>
+</mapper>

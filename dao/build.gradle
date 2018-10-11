@@ -1,0 +1,75 @@
+group 'person.yxl'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('com.alibaba:fastjson:1.2.7')
+    compile(project(":model"))
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile 'jstl:jstl:1.2'
+    compile "org.springframework:spring-aop:$springVersion"
+    compile "org.springframework:spring-context:$springVersion"
+    compile "org.springframework:spring-beans:$springVersion"
+    compile "org.springframework:spring-web:$springVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "org.springframework:spring-tx:$springVersion"
+    compile "org.springframework:spring-jdbc:$springVersion"
+    compile "org.springframework:spring-test:$springVersion"
+    compile "org.springframework:spring-core:$springVersion"
+    compile "org.springframework:spring-expression:$springVersion"
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.springframework:spring-aspects:$springVersion"
+    compile "org.springframework:spring-context-support:$springVersion"
+    compile "org.springframework.security:spring-security-core:$securityVersion"
+    compile "org.springframework.security:spring-security-web:$securityVersion"
+    compile "org.springframework.security:spring-security-config:$securityVersion"
+    compile "org.springframework.security:spring-security-taglibs:$securityVersion"
+    compile "org.springframework.security:spring-security-acl:$securityVersion"
+    compile "org.springframework.security:spring-security-cas:$securityVersion"
+    compile "org.springframework.security:spring-security-ldap:$securityVersion"
+    compile "org.springframework.security:spring-security-openid:$securityVersion"
+    compile "org.springframework.ldap:spring-ldap-core:$ladapVersion"
+    compile 'org.mybatis:mybatis:3.3.1'
+    compile 'org.mybatis:mybatis-spring:1.2.5'
+    compile 'mysql:mysql-connector-java:5.1.39'
+    compile 'com.alibaba:fastjson:1.2.35'
+    compile 'com.alibaba:druid:1.1.2'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.5'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.5'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.5'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.5'
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    compileOnly 'javax.servlet.jsp:jsp-api:2.2'
+    compile 'jstl:jstl:1.2'
+}
+
+// mybatis generator配置
+//apply plugin: "com.arenagod.gradle.MybatisGenerator"
+//buildscript {
+//    repositories {
+//        maven {
+//            url "https://plugins.gradle.org/m2/"
+//        }
+//    }
+//    dependencies {
+//        classpath "gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:1.4"
+//    }
+//}
+//
+//apply plugin: "com.arenagod.gradle.MybatisGenerator"
+//
+//configurations {
+//    mybatisGenerator
+//}
+//
+//mybatisGenerator {
+//    verbose = true
+//    configFile = 'src/main/resources/tools/generatorConfig.xml'
+//}
