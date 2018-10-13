@@ -2,6 +2,7 @@ package person.yxl.ymanager.web.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import person.yxl.ymanager.dao.user.UserDao;
 import person.yxl.ymanager.model.user.UserDO;
@@ -25,6 +26,12 @@ public class TestController {
         userDO.setUserName("yxl");
         userDO.setPassword("123456");
         userDO.setCustomerId(1L);
-        System.out.println(userDao.create(userDO));
+//        System.out.println(userDao.create(userDO));
+    }
+
+    @GetMapping("/get")
+    public String get(@RequestParam(name = "username") String userName) {
+        System.out.println(userName);
+        return "success";
     }
 }
